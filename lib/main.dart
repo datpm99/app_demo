@@ -4,6 +4,8 @@ import 'package:app_demo/signature/signature_view.dart';
 import 'package:app_demo/signature/signature_view_two.dart';
 import 'package:flutter/material.dart';
 
+import 'drag_img/drag_img_view_two.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -50,6 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
           BtnLink(name: 'Signature', onTap: link.onSignature),
           BtnLink(name: 'Signature Two', onTap: link.onSignatureTwo),
           // BtnLink(name: 'Form', onTap: link.onFormView),
+          BtnLink(name: 'Drag Image Two', onTap: link.onDragImgTwo),
         ],
       ),
     );
@@ -99,5 +102,9 @@ class Links {
 
   void onFormView() {
     navigatePage(context, const FormView());
+  }
+
+  void onDragImgTwo() {
+    navigatePage(context, const DragImgViewTwo());
   }
 }
