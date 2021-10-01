@@ -48,11 +48,11 @@ class _MyHomePageState extends State<MyHomePage> {
       body: ListView(
         padding: const EdgeInsets.all(15),
         children: [
-          BtnLink(name: 'Drag Image', onTap: link.onDragImage),
-          BtnLink(name: 'Signature', onTap: link.onSignature),
-          BtnLink(name: 'Signature Two', onTap: link.onSignatureTwo),
+          // BtnLink(name: 'Drag Image', onTap: link.onDragImage),
+          // BtnLink(name: 'Signature', onTap: link.onSignature),
+          // BtnLink(name: 'Signature Two', onTap: link.onSignatureTwo),
           // BtnLink(name: 'Form', onTap: link.onFormView),
-          BtnLink(name: 'Drag Image Two', onTap: link.onDragImgTwo),
+          BtnLink(name: 'Signature & Drag Image', onTap: link.onDragImgTwo),
         ],
       ),
     );

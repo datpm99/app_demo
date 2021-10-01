@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dialog_signature.dart';
@@ -16,25 +15,28 @@ class _DragImgViewTwoState extends State<DragImgViewTwo> {
   late File file;
   bool byteNull = true;
   bool fileNull = true;
-  Offset position = const Offset(100, 100);
-  double height = AppBar().preferredSize.height;
+  Offset position = const Offset(254, 50);
+  double heightApp = AppBar().preferredSize.height;
+  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   void updatePosition(Offset newPos) {
-    double height2 = MediaQuery.of(context).padding.top;
-    position = Offset(newPos.dx, newPos.dy - height - height2);
+    double heightSta = MediaQuery.of(context).padding.top;
+    position = Offset(newPos.dx, newPos.dy - heightApp - heightSta);
     setState(() {});
+    _showSnackBar();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       backgroundColor: Colors.white,
-      appBar: AppBar(title: const Text('Drag Image')),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Stack(
-          children: [
-            Row(
+      appBar: AppBar(title: const Text('Signature & Drag Image')),
+      body: Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+            child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: const [
@@ -42,9 +44,12 @@ class _DragImgViewTwoState extends State<DragImgViewTwo> {
                 Text('Đại Diện Bên B'),
               ],
             ),
-            Positioned(
-              left: position.dx,
-              top: position.dy,
+          ),
+          Positioned(
+            left: position.dx,
+            top: position.dy,
+            child: GestureDetector(
+              onTap: onShowDialog,
               child: Draggable(
                 maxSimultaneousDrags: 1,
                 onDragEnd: (details) => updatePosition(details.offset),
@@ -53,8 +58,8 @@ class _DragImgViewTwoState extends State<DragImgViewTwo> {
                 child: itemSign(),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -93,6 +98,16 @@ class _DragImgViewTwoState extends State<DragImgViewTwo> {
               : Image.file(file)
           : Image.memory(bytes!.buffer.asUint8List()),
     );
+  }
+
+  _showSnackBar() {
+    final snackBar = SnackBar(
+      content: Text(
+          'Dx = ${position.dx.toStringAsFixed(2)} ----- Dy = ${position.dy.toStringAsFixed(2)}'),
+      duration: Duration(seconds: 2),
+      backgroundColor: Colors.lightBlueAccent,
+    );
+    _scaffoldKey.currentState!.showSnackBar(snackBar);
   }
 }
 
