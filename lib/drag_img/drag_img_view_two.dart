@@ -17,7 +17,7 @@ class _DragImgViewTwoState extends State<DragImgViewTwo> {
   bool fileNull = true;
   Offset position = const Offset(254, 50);
   double heightApp = AppBar().preferredSize.height;
-  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   void updatePosition(Offset newPos) {
     double heightSta = MediaQuery.of(context).padding.top;
