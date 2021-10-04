@@ -1,3 +1,4 @@
+import 'package:app_demo/deeplink/deeplink_view.dart';
 import 'package:app_demo/drag_img/drag_img_view.dart';
 import 'package:app_demo/form/form_view.dart';
 import 'package:app_demo/signature/signature_view.dart';
@@ -48,11 +49,12 @@ class _MyHomePageState extends State<MyHomePage> {
       body: ListView(
         padding: const EdgeInsets.all(15),
         children: [
-          BtnLink(name: 'Drag Image', onTap: link.onDragImage),
-          BtnLink(name: 'Signature', onTap: link.onSignature),
-          BtnLink(name: 'Signature Two', onTap: link.onSignatureTwo),
+          // BtnLink(name: 'Drag Image', onTap: link.onDragImage),
+          // BtnLink(name: 'Signature', onTap: link.onSignature),
+          // BtnLink(name: 'Signature Two', onTap: link.onSignatureTwo),
           // BtnLink(name: 'Form', onTap: link.onFormView),
-          BtnLink(name: 'Drag Image Two', onTap: link.onDragImgTwo),
+          BtnLink(name: 'Signature & Drag/Drop Img', onTap: link.onDragImgTwo),
+          BtnLink(name: 'Deep Link', onTap: link.onDeepLink),
         ],
       ),
     );
@@ -106,5 +108,9 @@ class Links {
 
   void onDragImgTwo() {
     navigatePage(context, const DragImgViewTwo());
+  }
+
+  void onDeepLink() {
+    navigatePage(context, const DeepLinkView());
   }
 }
